@@ -47,9 +47,18 @@ $('#btnAdd').click(function () {
 
 /*Insert Data*/
 function Insert() {
+    var result = Validate();
+    if (result == false) {
+        return false;
+    }
+
+
+
+
+
     var formData = new Object();
     formData.id = $('#Id').val();
-    formData.productName = $('#ProductName').val();
+    formData.productName = $('#ProductName').val(); 
     formData.price = $('#Price').val();
     formData.qty = $('#Qty').val();
 
@@ -62,6 +71,7 @@ function Insert() {
                 alert('Unable to save the data.');
             }
             else {
+                HideModal();
                 GetProducts();
                 alert(response);
             }
@@ -76,4 +86,65 @@ function Insert() {
     });
 
 }
- 
+
+
+function HideModal() {
+    ClearData();
+    $('#ProductModal').modal('hide');
+
+}
+
+function ClearData() {
+    $('#ProductName').val('');
+    $('#Price').val('');
+    $('#Qty').val('');
+
+    $('#ProductName').css('border-color', 'Lightgrey');
+    $('#Price').css('border-color', 'Lightgrey');
+    $('#Qty').css('border-color', 'Lightgrey');
+}
+
+
+function Validate() {
+    var isValid = true;
+
+    if ($('#ProductName').val().trim() == "") {
+        $('#ProductName').css('border-color', 'Red');
+        isValid = false;
+    }
+    else {
+        $('#ProductName').css('border-color', 'Lightgrey');
+    }
+
+    if ($('#Price').val().trim() == "") {
+        $('#Price').css('border-color', 'Red');
+        isValid = false;
+    }
+    else {
+        $('#Price').css('border-color', 'Lightgrey');
+    }
+
+    if ($('#Qty').val().trim() == "") {
+        $('#Qty').css('border-color', 'Red');
+        isValid = false;
+    }
+    else {
+        $('#Qty').css('border-color', 'Lightgrey');
+    }
+    return isValid;
+
+}
+
+
+$('#ProductName').change(function () {
+    Validate();
+})
+
+$('#Price').change(function () {
+    Validate();
+})
+
+
+$('#Qty').change(function () {
+    Validate();
+})
