@@ -148,3 +148,101 @@ $('#Price').change(function () {
 $('#Qty').change(function () {
     Validate();
 })
+
+
+/*Edit*/
+function Edit(id) {
+    $.ajax({
+        url:'product/Edit?id=' + id,
+        type:'get',
+        contentType:'application/json:cahrset=utf-8',
+        datatype: 'json',
+        success: function (response) {
+            if (response == null || response == undefined) {
+                alert('Unable to read the data.');
+            }
+            else if (response.length == 0) {
+                alert('Data not available with the id' + id);
+            }
+            else {
+                $('#ProductModal').modal('show');
+                $('#modalTitle').text('Update Product');
+                $('#Save').css('display','none');
+                $('#Update').css('display', 'block');
+                $('#Id').val(response.id);
+                $('#ProductName').val(response.productName);
+                $('#Price').val(response.price);
+                $('#Qty').val(response.qty);
+
+            }
+        },
+        error: function () {
+            alert('Unable to read the data.');
+        }
+
+    })
+}
+
+
+/*Update Data*/
+function Update() {
+    var result = Validate();
+    if (result == false) {
+        return false;
+    }
+    var formData = new Object();
+    formData.id = $('#Id').val();
+    formData.productName = $('#ProductName').val();
+    formData.price = $('#Price').val();
+    formData.qty = $('#Qty').val();
+
+    $.ajax({
+        url: '/product/Update',
+        data: formData,
+        type: 'post',
+        success: function (response) {
+            if (response == null || response == undefined || response.length == 0) {
+                alert('Unable to save the data.');
+            }
+            else {
+                HideModal();
+                GetProducts();
+                alert(response);
+            }
+
+        },
+        error: function () {
+            alert('Unable to save the data.');
+
+        }
+
+
+    });
+}
+
+
+/*Delete Data*/
+
+function Delete(id) {
+    if (confirm('Are you sure to delete this record?')) {
+        $.ajax({
+            url: 'product/Delete?id=' + id,
+            type: 'post',
+            success: function (response) {
+                if (response == null || response == undefined) {
+                    alert('Unable to delete the data.');
+                }
+                else {
+                    GetProducts();
+                    alert(response);
+
+                }
+            },
+            error: function () {
+                alert('Unable to delete the data.');
+            }
+
+        })
+    }
+    
+}
