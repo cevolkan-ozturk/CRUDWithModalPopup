@@ -18,5 +18,8 @@ namespace CRUDWithModalPopup.Models.DBEntities
         [Required]
         public int Qty { get; set; }
 
+
+      public Kategori? Kategori { get; set; }    
+
     }
 }

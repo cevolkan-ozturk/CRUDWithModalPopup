@@ -27,6 +27,7 @@ function GetProducts()  {
                     object += '<td>' + item.productName + '</td>';
                     object += '<td>' + item.price + '</td>';
                     object += '<td>' + item.qty + '</td>';
+                    object += '<td>' + item.kategorıName + '</td>';
                     object += '<td> <a href="#" class="btn btn-primary btn-sm" onclick="Edit(' + item.id + ')">Edit</a> <a href="#" class="btn btn-danger btn-sm" onclick="Delete(' + item.id + ')">Delete</a></td>'
                 });
                 $('#tblBody').html(object);
@@ -178,6 +179,7 @@ function Edit(id) {
                 $('#ProductName').val(response.productName);
                 $('#Price').val(response.price);
                 $('#Qty').val(response.qty);
+                $('#KategoriName').val(response.kategorıName);
 
             }
            

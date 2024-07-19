@@ -11,5 +11,7 @@ namespace CRUDWithModalPopup.DAL
         }
         public virtual DbSet<Product> Products { get; set; }
 
+        public virtual DbSet<Kategori> Kategoris { get; set; }
+
     }
 }

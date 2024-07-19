@@ -1,6 +1,7 @@
 ﻿using CRUDWithModalPopup.DAL;
 using CRUDWithModalPopup.Models.DBEntities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CRUDWithModalPopup.Controllers
 {
@@ -20,7 +21,7 @@ namespace CRUDWithModalPopup.Controllers
 
         public JsonResult GetProducts()
         {
-            var products = _context.Products.ToList();
+            var products = _context.Products.Include(p=>p.Kategori).ToList();
             return Json(products);
         }
 
@@ -36,6 +37,7 @@ namespace CRUDWithModalPopup.Controllers
                 return Json("Model validation failed");
             
         }
+
 
 
         [HttpGet]
