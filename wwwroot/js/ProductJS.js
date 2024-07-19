@@ -95,6 +95,10 @@ function HideModal() {
 }
 
 function ClearData() {
+    $('#Save').css('display', 'block');
+    $('#Update').css('display', 'none');
+    $('#Id').val('0');
+
     $('#ProductName').val('');
     $('#Price').val('');
     $('#Qty').val('');
@@ -102,6 +106,7 @@ function ClearData() {
     $('#ProductName').css('border-color', 'Lightgrey');
     $('#Price').css('border-color', 'Lightgrey');
     $('#Qty').css('border-color', 'Lightgrey');
+
 }
 
 
@@ -175,7 +180,11 @@ function Edit(id) {
                 $('#Qty').val(response.qty);
 
             }
+           
         },
+
+     
+
         error: function () {
             alert('Unable to read the data.');
         }
@@ -205,6 +214,11 @@ function Update() {
                 alert('Unable to save the data.');
             }
             else {
+
+                /* Bunu denedim Volkan ÖZTÜRK 18.07.2024
+                $('#Save').css('display', 'block');
+                $('#Update').css('display', 'none');*/
+
                 HideModal();
                 GetProducts();
                 alert(response);
@@ -233,6 +247,9 @@ function Delete(id) {
                     alert('Unable to delete the data.');
                 }
                 else {
+                    /* Bunu denedim Volkan ÖZTÜRK 18.07.2024
+                    $('#Save').css('display', 'block');
+                    $('#Update').css('display', 'none');*/
                     GetProducts();
                     alert(response);
 
