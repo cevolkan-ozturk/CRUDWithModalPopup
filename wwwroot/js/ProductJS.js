@@ -27,7 +27,7 @@ function GetProducts()  {
                     object += '<td>' + item.productName + '</td>';
                     object += '<td>' + item.price + '</td>';
                     object += '<td>' + item.qty + '</td>';
-                    object += '<td>' + item.kategorıName + '</td>';
+                    object += '<td>' + item.kategori.kategorıName + '</td>';
                     object += '<td> <a href="#" class="btn btn-primary btn-sm" onclick="Edit(' + item.id + ')">Edit</a> <a href="#" class="btn btn-danger btn-sm" onclick="Delete(' + item.id + ')">Delete</a></td>'
                 });
                 $('#tblBody').html(object);
@@ -62,6 +62,7 @@ function Insert() {
     formData.productName = $('#ProductName').val(); 
     formData.price = $('#Price').val();
     formData.qty = $('#Qty').val();
+    formData.kategorıName = $('#KategoriName').val();
 
     $.ajax({
         url: '/product/Insert',
